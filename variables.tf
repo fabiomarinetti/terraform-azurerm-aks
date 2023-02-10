@@ -44,14 +44,10 @@ variable "agents_labels" {
   default     = {}
 }
 
-variable "agents_labels" {
+variable "agents_taints" {
   type        = list(string)
   description = "(Optional) A list of Kubernetes taints which should be applied to nodes in the Default Node Pool. Changing this forces a new resource to be created."
   default     = []
-  validation  = {
-    condition     = regexall("^[a-zA-Z0-9-_]+\=[a-zA-Z0-9\-_]+:(NoExecute|NoSchedule)$", var.agents_labels)
-    error_message = "One or more of specified taints does not match the form <key>=<value>:NoSchedule of <key>=<value>:NoExecute"
-  }
 }
 
 variable "agents_max_count" {
